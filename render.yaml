@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: baml-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 3000
+    buildCommand: baml generate
+    startCommand: baml serve --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health

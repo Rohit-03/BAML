@@ -13,8 +13,15 @@ COPY . .
 # If you have a package.json file in your project
 RUN if [ -f package.json ]; then npm install; fi
 
-# Expose the port BAML will run on
-EXPOSE 3000
+# Generate the OpenAPI spec
+RUN baml generate
 
-# Start the BAML server without the generate step
-CMD ["baml", "serve", "--host", "0.0.0.0", "--port", "3000"]
+# Expose the port BAML will run on (use PORT env var or default to 3000)
+ENV PORT=3000
+EXPOSE ${PORT}
+
+# Create a health check endpoint
+RUN echo 'const http = require("http"); const server = http.createServer((req, res) => { if (req.url === "/health") { res.writeHead(200); res.end("OK"); } else { res.writeHead(404); res.end(); } }); server.listen(8080);' > health.js
+
+# Start the BAML server and health check
+CMD ["sh", "-c", "node health.js & baml serve --host 0.0.0.0 --port ${PORT}"]
