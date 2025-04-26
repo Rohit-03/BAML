@@ -3,7 +3,7 @@ FROM node:18
 WORKDIR /app
 
 # Install BAML CLI and TypeScript compiler
-RUN npm install -g @boundaryml/baml typescript openapi-generator-cli
+RUN npm install -g @boundaryml/baml@0.84.0 typescript openapi-generator-cli
 
 # Copy entire project
 COPY . .
