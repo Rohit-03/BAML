@@ -1,0 +1,8 @@
+{
+    "name": "baml-api-server",
+    "version": "1.0.0",
+    "description": "Deployment for BAML server",
+    "private": true,
+    "dependencies": {}
+  }
+  
