@@ -3,6 +3,8 @@
     "version": "1.0.0",
     "description": "Deployment for BAML server",
     "private": true,
-    "dependencies": {}
-  }
+    "dependencies": {
+      "@boundaryml/baml": "latest"
+    }
+}
   

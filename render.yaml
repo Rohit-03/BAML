@@ -1,3 +1,17 @@
+# services:
+#   - type: web
+#     name: baml-api
+#     env: docker
+#     dockerfilePath: ./baml.Dockerfile
+#     envVars:
+#       - key: PORT
+#         value: 2024
+#       # - key: BAML_PASSWORD
+#       #   sync: false # This makes it a secret that you'll set in Render dashboard
+#     healthCheckPath: /_debug/ping
+#     buildCommand: docker build -t baml-over-http -f baml.Dockerfile .
+#     startCommand: docker run -p $PORT:2024 baml-over-http
+
 services:
   - type: web
     name: baml-api
@@ -6,8 +20,4 @@ services:
     envVars:
       - key: PORT
         value: 2024
-      - key: BAML_PASSWORD
-        sync: false # This makes it a secret that you'll set in Render dashboard
     healthCheckPath: /_debug/ping
-    buildCommand: docker build -t baml-over-http -f baml.Dockerfile .
-    startCommand: docker run -p $PORT:2024 baml-over-http
