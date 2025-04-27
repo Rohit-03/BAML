@@ -49,4 +49,4 @@ RUN echo "NPM version: $(npm -v)"
 ENV PORT=2024
 
 # Start the BAML server using npx to ensure proper execution
-CMD ["npx", "baml-cli", "serve", "--port", "2024"]
+CMD ["npx", "baml-cli", "serve", "--port", "2024", "--cors"]
