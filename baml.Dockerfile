@@ -32,11 +32,11 @@ COPY baml_src/ ./baml_src/
 RUN npm install
 RUN npm install -g @boundaryml/baml@latest
 
-# Configure nginx for CORS
+# Create nginx config template
 RUN echo 'events { worker_connections 1024; }\
 http {\
     server {\
-        listen $PORT;\
+        listen ${PORT};\
         location / {\
             proxy_pass http://localhost:2024;\
             proxy_http_version 1.1;\
@@ -59,10 +59,10 @@ http {\
             }\
         }\
     }\
-}' > /etc/nginx/nginx.conf
+}' > /etc/nginx/nginx.template
 
 # Set environment variables
 ENV PORT=2024
 
-# Start both nginx and baml server
-CMD sh -c "nginx && npx baml-cli serve --from ./baml_src --port 2024"
+# Start nginx with the correct port and baml server
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && nginx && npx baml-cli serve --from ./baml_src --port 2024"
