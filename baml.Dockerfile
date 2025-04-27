@@ -19,8 +19,8 @@
 # CMD ["npx", "baml-cli", "serve", "--from", "./baml_src", "--port", "2024"]
 FROM node:20
 
-# Install nginx
-RUN apt-get update && apt-get install -y nginx
+# Install nginx and gettext-base (for envsubst)
+RUN apt-get update && apt-get install -y nginx gettext-base
 
 WORKDIR /app
 
