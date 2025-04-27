@@ -1,10 +1,10 @@
 {
-    "name": "baml-api-server",
-    "version": "1.0.0",
-    "description": "Deployment for BAML server",
-    "private": true,
-    "dependencies": {
-      "@boundaryml/baml": "latest"
-    }
+  "name": "baml-api-server",
+  "version": "1.0.0",
+  "description": "Deployment for BAML server",
+  "private": true,
+  "dependencies": {
+    "@boundaryml/baml": "latest",
+    "vite": "^6.3.3"
+  }
 }
-  
